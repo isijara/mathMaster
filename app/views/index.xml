@@ -1,0 +1,12 @@
+<Alloy>
+	<Window id="mathMasterWin" class="container">
+		<View id="header">
+			<Label id="title">Maestro de las Matemáticas</Label>
+			
+			
+		</View>
+		
+		<Require src="menu"/>
+		
+	</Window>
+</Alloy>

@@ -1,0 +1,10 @@
+".container": {
+	backgroundColor:"#FFFFFF"
+},
+"#title": {
+	textAlign: 'center',
+	top: "20dp",
+	font: {
+		fontSize: "12dp",
+	}
+}

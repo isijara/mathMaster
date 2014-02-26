@@ -1,0 +1,16 @@
+<Alloy>
+	<Window id="entrenarWin" title="Entrenar" onOpen="init">
+  		<View id="header">
+        	<Label id="title"/>
+      	</View>
+      	<Label id="volver" onClick="cerrarOpcion">Volver</Label>
+      	
+        <Label id="labelTabla"> </Label>
+       
+		<TextField id="respuesta"  />
+		<Button platform="ios" id="btnResponder" onClick="comprobarRespuesta" class="btn"> Responder</Button>
+		<Button platform="ios" id="btnGenerarPregunta" onClick="generarPreguntar" class="btn"> Preguntar Tabla</Button>
+		<Button platform="ios" id="btnPista" onClick="obtenerPista" class="btn"> Obtener Pista </Button>		
+	
+	</Window>
+</Alloy>

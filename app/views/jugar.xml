@@ -1,0 +1,26 @@
+<Alloy>
+	<Collection src="nivel" />
+	<Window id="jugarWin" title="Entrenar" onOpen="init">
+		
+  		<View id="header">
+        	<Label id="title">Maestro de las Matemáticas</Label>
+    	</View>
+      	
+      	<Label id="volver" onClick="cerrarOpcion">Volver</Label>
+      	
+      	<Label id="labelTablaJugar"></Label>
+      	<TextField id="respuesta"> </TextField>
+      	<Button id="btnResponder" onClick="responder"> ► </Button>
+		<!--
+			<TableView id="tablaCollection" dataCollection="nivel">
+		        <TableViewRow id="row" >
+				    <Label id="chiste" text="{nivel}" />
+				   
+				</TableViewRow>
+	       </TableView>
+		-->
+		
+		<Label id="labelCronometro">30</Label>	
+	
+	</Window>
+</Alloy>

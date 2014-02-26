@@ -1,0 +1,78 @@
+".container": {
+	backgroundColor:"white"
+},
+"Label": {
+	height: "30dp",
+	color: "#000",
+	top: "80dp",
+	textAlign: 'center',
+},
+"#respuesta": {
+	
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	color: "#336699", 
+	top  : "115dp", 
+	left : "15dp",
+	width: "180", 
+	height:"50dp"
+}
+
+"#labelTabla" : {
+	top: "80dp",
+	backgroundColor: 'F7F7F7',
+	width: 80,
+	heigth: "30dp"
+	
+},
+"#btnResponder" : {
+	top: "115dp",
+	backgroundColor: 'white',
+	right: 20,
+	height: "50dp",
+	borderWidth: 0,
+	width: 100,
+	borderRadius: 5,
+	backgroundColor : "#007AFF",
+	color: "#F7F7F7"
+},
+"#btnGenerarPregunta" : {
+	top:    "175dp",
+	left:   "15dp" ,
+	height: "50dp",
+	borderWidth: 0.1,
+	width: "90%",
+	borderRadius: 5
+},
+"#btnPista" : {
+	top:    "235dp",
+	left:   "15dp" ,
+	height: "50dp",
+	borderWidth: 0,
+	width: "90%",
+	borderRadius: 5,
+	backgroundColor: "#4CD964",
+	color: "#F7F7F7"
+
+},
+"#entrenarWin": {
+	backgroundColor : "#F7F7F7",
+	fullscreen: false
+},
+"#volver": {
+  top: "50dp",
+  height: "30dp",
+  width: Ti.UI.FILL,
+  backgroundColor: "#FF9933",
+  color: "#FFFFFF",
+  font: {
+    fontSize: "16dp"
+  },
+  textAlign: 'center'
+},
+"#title": {
+	textAlign: 'center',
+	top: "20dp",
+	font: {
+		fontSize: "12dp",
+	}
+}

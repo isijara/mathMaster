@@ -1,0 +1,30 @@
+"#menu": {
+  top: "50dp",
+  height: "30dp",
+  width: Ti.UI.FILL,
+  backgroundColor: "#FF9933"
+},
+
+"Label": {
+  height: "30dp",
+  color: "#FFFFFF",
+  width: '33%',
+  top: 0,
+  left: 0,
+  font: {
+    fontSize: "16dp"
+  },
+  textAlign: 'center'
+},
+
+"#jugar": {
+  width: "34%"
+},
+
+"#entrenar": {
+  left: "34%"
+},
+
+"#records": {
+  left: "67%"
+}
