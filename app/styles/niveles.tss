@@ -1,0 +1,39 @@
+"#jugarWin": {
+	backgroundColor : "#F7F7F7",
+	fullscreen: false
+},
+"#volver": {
+  top: "50dp",
+  height: "30dp",
+  width: Ti.UI.FILL,
+  backgroundColor: "#FF9933",
+  color: "#FFFFFF",
+  font: {
+    fontSize: "16dp"
+  },
+  textAlign: 'center'
+},
+"#title": {
+	textAlign: 'center',
+	top: "20dp",
+	font: {
+		fontSize: "12dp",
+	}
+},
+
+"#tablaCollection": {
+	top: "80dp"
+},
+"#row": {
+  //top: "150dp", //height: '50dp',
+  height: "30dp",
+  backgroundColor: '#fff',
+  focusable: false,
+  textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
+  left: 4
+},
+"#nivel3": {
+	textAlign: 'left'
+}
+
+

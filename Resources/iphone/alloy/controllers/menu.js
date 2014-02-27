@@ -1,12 +1,9 @@
 function Controller() {
-    function jugar() {
-        alert("esto es alerta máxima");
-    }
     function entrenar() {
         Alloy.createController("entrenar").getView().open();
     }
-    function jugar() {
-        var jugarWin = Alloy.createController("jugar").getView();
+    function seleccionarNivel() {
+        var jugarWin = Alloy.createController("niveles").getView();
         jugarWin.open();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -39,7 +36,7 @@ function Controller() {
         id: "jugar"
     });
     $.__views.menu.add($.__views.jugar);
-    jugar ? $.__views.jugar.addEventListener("click", jugar) : __defers["$.__views.jugar!click!jugar"] = true;
+    seleccionarNivel ? $.__views.jugar.addEventListener("click", seleccionarNivel) : __defers["$.__views.jugar!click!seleccionarNivel"] = true;
     $.__views.entrenar = Ti.UI.createLabel({
         height: "30dp",
         color: "#FFFFFF",
@@ -65,13 +62,13 @@ function Controller() {
             fontSize: "16dp"
         },
         textAlign: "center",
-        text: "",
+        text: "Récords",
         id: "records"
     });
     $.__views.menu.add($.__views.records);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    __defers["$.__views.jugar!click!jugar"] && $.__views.jugar.addEventListener("click", jugar);
+    __defers["$.__views.jugar!click!seleccionarNivel"] && $.__views.jugar.addEventListener("click", seleccionarNivel);
     __defers["$.__views.entrenar!click!entrenar"] && $.__views.entrenar.addEventListener("click", entrenar);
     _.extend($, exports);
 }

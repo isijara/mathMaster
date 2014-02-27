@@ -3,14 +3,14 @@ var nivel = false;
 
 
 var operaciones = [
-					{ op: " 2 x 3 = ?", resultado: 6  },
-					{ op: " 2 x 8 = ?", resultado: 16  },
-					{ op: " 3 x 3 = ?", resultado: 9  },
+					{ op: " 2 x 3 = ?", resultado: 6   },
+					{ op: " 2 x 5 = ?", resultado: 10  },
+					{ op: " 1 x 4 = ?", resultado: 4   },
 					{ op: " 4 x 3 = ?", resultado: 12  },
-					{ op: " 5 x 4 = ?", resultado: 20  },
-					{ op: " 1 x 3 = ?", resultado: 3  },
-					{ op: " 9 x 6 = ?", resultado: 54  },
-					{ op: " 7 x 8 = ?", resultado: 56  },
+					{ op: " 3 x 3 = ?", resultado: 9   },
+					{ op: " 1 x 3 = ?", resultado: 3   },
+					{ op: " 9 x 1 = ?", resultado: 9   },
+					{ op: " 6 x 6 = ?", resultado: 36  },
 					{ op: " 5 x 3 = ?", resultado: 15  }, 
 ];
 
@@ -18,7 +18,7 @@ var respuestas = [];
 
 
 
-//var chronometer = setInterval(updateCount, 1000);
+var chronometer = setInterval(updateCount, 1000);
 var counter = 0;
 
 function updateCount() {
@@ -45,7 +45,7 @@ function responder () {
 		$.respuesta.focus();
 		
 	} else {
-		//clearInterval(chronometer);
+		clearInterval(chronometer);
 		notificarResultado();
 	}
 			
@@ -65,6 +65,7 @@ var revisarRespuestas = function(_operaciones, _respuestas) {
 
 function cerrarOpcion () {
 	$.jugarWin.close();
+	clearInterval(chronometer);
 }
 
 
@@ -104,12 +105,3 @@ function verExplicacion () {
   }
 }
 
-
-
-
-
-
-
-
-
-//$.fav.text = String.fromCharCode(9733);

@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="jugarWin" title="" ><!--onOpen="init"-->
+	<Window id="jugarWin" title="Entrenar" ><!--onOpen="init"-->
 		
   		<View id="header">
         	<Label id="title">Maestro de las Matemáticas</Label>
@@ -7,27 +7,18 @@
       	
       	<Label id="volver" onClick="cerrarOpcion">Volver</Label>
       	
-      	<!--<Label id="labelTablaJugar"></Label>
-      	<TextField id="respuesta"> </TextField>
-      	<Button id="btnResponder" onClick="responder"> ► </Button>
-      -->
-		
 		<TableView id="tablaCollection" >
 	        <TableViewRow id="row" >
-			    <Label id="nivel1" text="Algo">Nivel 1 ★</Label>
-			   
+			    <Label id="nivel1" onClick="abrirNivelUno" text="Algo">Nivel 1 ★</Label>	   
 			</TableViewRow>
 			
 			<TableViewRow id="row" >
-			    <Label id="nivel2" text="Algo">Nivel 2 ★★</Label>
-			   
+			    <Label id="nivel2" onClick="abrirNivelDos" text="Algo">Nivel 2 ★★</Label>
 			</TableViewRow>
 			
 			<TableViewRow id="row" >
-			    <Label id="nivel3" text="Algo">Nivel 3 ★★★</Label>
-			   
+			    <Label id="nivel3" onClick="abrirNivelTres" text="Algo">Nivel 3 ★★★</Label>
 			</TableViewRow>
-			
        </TableView>
 		
 		

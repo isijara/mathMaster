@@ -1,6 +1,6 @@
 <Alloy>
   <View id="menu">
-    <Label id="jugar" onClick="jugar"> Jugar </Label>
+    <Label id="jugar" onClick="seleccionarNivel"> Jugar </Label>
     <Label id="entrenar" onClick="entrenar"> Entrenar </Label>
     <Label id="records"> Récords  </Label>
   </View>

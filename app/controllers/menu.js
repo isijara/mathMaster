@@ -8,8 +8,9 @@ function entrenar() {
 }
 
 
-function jugar() {
-	var jugarWin = Alloy.createController("jugar").getView();
+function seleccionarNivel() {
+	var jugarWin = Alloy.createController("niveles").getView();
 	jugarWin.open();
 	
 }
+
