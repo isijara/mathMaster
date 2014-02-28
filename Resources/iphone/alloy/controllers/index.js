@@ -33,9 +33,6 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     $.mathMasterWin.open();
-    var fb = require("facebook");
-    fb.appid = 654538291277702;
-    fb.authorize();
     _.extend($, exports);
 }
 

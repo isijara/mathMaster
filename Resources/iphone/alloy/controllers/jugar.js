@@ -1,6 +1,41 @@
 function Controller() {
+    function updateCount() {
+        console.log("actualizo");
+        $.labelCronometro.setText($.labelCronometro.getText() - 1);
+        if ("0" == $.labelCronometro.getText()) {
+            console.log("entro a hacer clear");
+            clearInterval(chronometer);
+            alert("El tiempo ha terminado");
+            notificarResultado();
+        }
+    }
+    function notificarResultado() {
+        alert(revisarRespuestas(operaciones, respuestas));
+    }
+    function responder() {
+        respuestas.push($.respuesta.getValue());
+        if (operaciones.length > counter) {
+            $.labelTablaJugar.setText(operaciones[counter++].op);
+            $.respuesta.setValue("");
+            $.respuesta.focus();
+        } else {
+            clearInterval(chronometer);
+            notificarResultado();
+            Alloy.Globals.fb.publicarEnFacebook();
+            var tiempoSolucion = 30 - $.labelCronometro.getText();
+            if (Alloy.Globals.mathMasterConfig.record[nivel] > tiempoSolucion || 0 == Alloy.Globals.mathMasterConfig.record[nivel] && noError) {
+                Alloy.Globals.mathMasterConfig.record[nivel] = tiempoSolucion;
+                console.log(tiempoSolucion, Alloy.Globals.mathMasterConfig);
+                alert("Felicidades: Nuevo récord");
+            }
+        }
+    }
     function cerrarOpcion() {
         $.jugarWin.close();
+        clearInterval(chronometer);
+    }
+    function init() {
+        $.labelTablaJugar.setText(operaciones[counter++].op);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "jugar";
@@ -11,65 +46,104 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.jugarWin = Ti.UI.createWindow({
+        backgroundColor: "#F7F7F7",
+        fullscreen: false,
         id: "jugarWin",
         title: ""
     });
     $.__views.jugarWin && $.addTopLevelView($.__views.jugarWin);
+    init ? $.__views.jugarWin.addEventListener("open", init) : __defers["$.__views.jugarWin!open!init"] = true;
+    $.__views.labelCronometro = Ti.UI.createLabel({
+        top: "80dp",
+        textAlign: "center",
+        height: "30dp",
+        text: "30",
+        id: "labelCronometro"
+    });
+    $.__views.jugarWin.add($.__views.labelCronometro);
     $.__views.header = Ti.UI.createView({
         id: "header"
     });
     $.__views.jugarWin.add($.__views.header);
     $.__views.title = Ti.UI.createLabel({
+        textAlign: "center",
+        top: "20dp",
+        font: {
+            fontSize: "12dp"
+        },
         text: "Maestro de las Matemáticas",
         id: "title"
     });
     $.__views.header.add($.__views.title);
     $.__views.volver = Ti.UI.createLabel({
+        top: "50dp",
+        height: "30dp",
+        width: Ti.UI.FILL,
+        backgroundColor: "#FF9933",
+        color: "#FFFFFF",
+        font: {
+            fontSize: "16dp"
+        },
+        textAlign: "center",
         text: "Volver",
         id: "volver"
     });
     $.__views.jugarWin.add($.__views.volver);
     cerrarOpcion ? $.__views.volver.addEventListener("click", cerrarOpcion) : __defers["$.__views.volver!click!cerrarOpcion"] = true;
-    var __alloyId1 = [];
-    $.__views.row = Ti.UI.createTableViewRow({
-        id: "row"
+    $.__views.labelTablaJugar = Ti.UI.createLabel({
+        top: "150dp",
+        backgroundColor: "F7F7F7",
+        width: "25%",
+        left: "5%",
+        heigth: "30dp",
+        id: "labelTablaJugar"
     });
-    __alloyId1.push($.__views.row);
-    $.__views.nivel1 = Ti.UI.createLabel({
-        text: "Nivel 1 ★",
-        id: "nivel1"
+    $.__views.jugarWin.add($.__views.labelTablaJugar);
+    $.__views.respuesta = Ti.UI.createTextField({
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        color: "#336699",
+        top: "125dp",
+        left: "35%",
+        width: "30%",
+        height: "50dp",
+        keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD,
+        id: "respuesta"
     });
-    $.__views.row.add($.__views.nivel1);
-    $.__views.row = Ti.UI.createTableViewRow({
-        id: "row"
+    $.__views.jugarWin.add($.__views.respuesta);
+    $.__views.btnResponder = Ti.UI.createButton({
+        top: "125dp",
+        backgroundColor: "#007AFF",
+        right: "10%",
+        height: "50dp",
+        borderWidth: 0,
+        width: "20%",
+        borderRadius: 5,
+        color: "#F7F7F7",
+        title: "►",
+        id: "btnResponder"
     });
-    __alloyId1.push($.__views.row);
-    $.__views.nivel2 = Ti.UI.createLabel({
-        text: "Nivel 2 ★★",
-        id: "nivel2"
-    });
-    $.__views.row.add($.__views.nivel2);
-    $.__views.row = Ti.UI.createTableViewRow({
-        id: "row"
-    });
-    __alloyId1.push($.__views.row);
-    $.__views.nivel3 = Ti.UI.createLabel({
-        text: "Nivel 3 ★★★",
-        id: "nivel3"
-    });
-    $.__views.row.add($.__views.nivel3);
-    $.__views.tablaCollection = Ti.UI.createTableView({
-        data: __alloyId1,
-        id: "tablaCollection"
-    });
-    $.__views.jugarWin.add($.__views.tablaCollection);
+    $.__views.jugarWin.add($.__views.btnResponder);
+    responder ? $.__views.btnResponder.addEventListener("click", responder) : __defers["$.__views.btnResponder!click!responder"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     var niveles = Alloy.Collections.nivel;
+    var nivel = false;
+    var config = Alloy.Globals.mathMasterConfig, nivel = config.nivel, operacionesDeNiveles = config.operaciones, operaciones = operacionesDeNiveles[nivel], respuestas = [], noError = true;
+    var chronometer = setInterval(updateCount, 1e3);
+    var counter = 0;
+    var revisarRespuestas = function(_operaciones, _respuestas) {
+        var conteoResultado = 0;
+        _.each(_operaciones, function(el, index) {
+            el.resultado == _respuestas[index] ? conteoResultado++ : noError = false;
+        });
+        return conteoResultado + " aciertos de " + _operaciones.length;
+    };
     _.each(niveles, function(el) {
         console.log(el);
     });
+    __defers["$.__views.jugarWin!open!init"] && $.__views.jugarWin.addEventListener("open", init);
     __defers["$.__views.volver!click!cerrarOpcion"] && $.__views.volver.addEventListener("click", cerrarOpcion);
+    __defers["$.__views.btnResponder!click!responder"] && $.__views.btnResponder.addEventListener("click", responder);
     _.extend($, exports);
 }
 

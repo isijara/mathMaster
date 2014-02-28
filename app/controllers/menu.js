@@ -14,3 +14,8 @@ function seleccionarNivel() {
 	
 }
 
+function abrirRecords() {
+	var recordsWin = Alloy.createController('records').getView();
+	recordsWin.open();
+}
+

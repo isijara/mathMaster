@@ -1,8 +1,8 @@
 <Alloy>
 	<Window id="entrenarWin" title="Entrenar" onOpen="init">
   		<View id="header">
-        	<Label id="title"/>
-      	</View>
+        	<Label id="title">Maestro de las Matemáticas</Label>
+    	</View>
       	<Label id="volver" onClick="cerrarOpcion">Volver</Label>
       	
         <Label id="labelTabla"> </Label>

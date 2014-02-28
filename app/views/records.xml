@@ -1,0 +1,26 @@
+<Alloy>
+	<Window id="recordsWin" title="" onOpen="init" >
+		
+		
+  		<View id="header">
+        	<Label id="title">Maestro de las Matemáticas</Label>
+    	</View>
+      	
+      	<Label id="volver" onClick="cerrarOpcion">Volver</Label>
+      	
+      	<TableView id='recordsTable'>
+      		<TableViewRow > 
+      			<Label id='recordNivelUno'></Label>
+      		</TableViewRow>
+      		
+      		<TableViewRow >
+      			<Label id='recordNivelDos'></Label>
+      		</TableViewRow>
+      		
+      		<TableViewRow>
+      			<Label id='recordNivelTres'></Label>
+      		</TableViewRow>
+      	</TableView>
+	
+	</Window>
+</Alloy>

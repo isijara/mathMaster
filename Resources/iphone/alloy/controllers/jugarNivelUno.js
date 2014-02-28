@@ -21,6 +21,7 @@ function Controller() {
         } else {
             clearInterval(chronometer);
             notificarResultado();
+            Alloy.Globals.fb.publicarEnFacebook();
         }
     }
     function cerrarOpcion() {
@@ -120,34 +121,6 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var niveles = Alloy.Collections.nivel;
-    var operaciones = [ {
-        op: " 2 x 3 = ?",
-        resultado: 6
-    }, {
-        op: " 2 x 5 = ?",
-        resultado: 10
-    }, {
-        op: " 1 x 4 = ?",
-        resultado: 4
-    }, {
-        op: " 4 x 3 = ?",
-        resultado: 12
-    }, {
-        op: " 3 x 3 = ?",
-        resultado: 9
-    }, {
-        op: " 1 x 3 = ?",
-        resultado: 3
-    }, {
-        op: " 9 x 1 = ?",
-        resultado: 9
-    }, {
-        op: " 6 x 6 = ?",
-        resultado: 36
-    }, {
-        op: " 5 x 3 = ?",
-        resultado: 15
-    } ];
     var respuestas = [];
     var chronometer = setInterval(updateCount, 1e3);
     var counter = 0;

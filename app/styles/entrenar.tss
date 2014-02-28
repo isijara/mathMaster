@@ -1,7 +1,5 @@
-".container": {
-	backgroundColor:"white"
-},
-"Label": {
+
+"#labelTabla": {
 	height: "30dp",
 	color: "#000",
 	top: "80dp",

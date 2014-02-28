@@ -39,36 +39,32 @@ function Controller() {
     });
     $.__views.entrenarWin.add($.__views.header);
     $.__views.title = Ti.UI.createLabel({
-        height: "30dp",
-        color: "#000",
-        top: "20dp",
         textAlign: "center",
+        top: "20dp",
         font: {
             fontSize: "12dp"
         },
+        text: "Maestro de las Matemáticas",
         id: "title"
     });
     $.__views.header.add($.__views.title);
     $.__views.volver = Ti.UI.createLabel({
-        height: "30dp",
-        color: "#FFFFFF",
         top: "50dp",
-        textAlign: "center",
+        height: "30dp",
         width: Ti.UI.FILL,
         backgroundColor: "#FF9933",
+        color: "#FFFFFF",
         font: {
             fontSize: "16dp"
         },
+        textAlign: "center",
         text: "Volver",
         id: "volver"
     });
     $.__views.entrenarWin.add($.__views.volver);
     cerrarOpcion ? $.__views.volver.addEventListener("click", cerrarOpcion) : __defers["$.__views.volver!click!cerrarOpcion"] = true;
     $.__views.labelTabla = Ti.UI.createLabel({
-        height: "30dp",
-        color: "#000",
         top: "80dp",
-        textAlign: "center",
         backgroundColor: "F7F7F7",
         width: 80,
         heigth: "30dp",

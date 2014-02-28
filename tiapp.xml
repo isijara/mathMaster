@@ -13,7 +13,10 @@
     <analytics>true</analytics>
     <guid>8cd525bc-a23c-4db2-b3f1-63c998ab2076</guid>
     <property name="ti.ui.defaultunit" type="string">dp</property>
+    <property name="ti.facebook.appid">654538291277702</property>
     <ios>
+    	
+
         <plist>
             <dict>
                 <key>UISupportedInterfaceOrientations~iphone</key>
@@ -47,7 +50,10 @@
         </splash>
         <theme>default</theme>
     </mobileweb>
-    <modules/>
+    <modules>
+        <module platform="android">facebook</module>
+        <module platform="iphone">facebook</module>
+    </modules>
     <deployment-targets>
         <target device="android">false</target>
         <target device="blackberry">false</target>

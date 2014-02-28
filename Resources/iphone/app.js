@@ -1,27 +1,5 @@
 var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;
 
-migration = [ {
-    fav: false,
-    chiste: "- Quien hijo?\n- Mama, Mama en la escuela dicen que eres adivina.",
-    explicacion: "Esta cura porque adivina lo que el hijo le dira entonces si es adivina"
-}, {
-    fav: false,
-    chiste: "- Profe cuando empezaremos a ver multiplicaciones de dos digitos?\n- Calmate cerebrito que esto es el conalep no Harvard.",
-    explicacion: "No esta cura, todos merecen respeto... hasta los navajeros del conalep"
-}, {
-    fav: false,
-    chiste: "- Godinez este reporte esta mal.\n- Mire jefe lo importante es que su esposa no se entere que anda con la secretaria.\n-Asi dejelo ta chingon.",
-    explicacion: "Ta cura porque... es como que amenaza al jefe pues entonces ya el jefe le dice que asi esta bien"
-}, {
-    fav: false,
-    chiste: "- Mama mama en la escuela me dicen peludo.\n- No mames un perro que habla.",
-    explicacion: "Ta cura porque esta tan peludo que creen que es un perro."
-}, {
-    fav: false,
-    chiste: "Porque el Pato cruzo la Calle?\nPorque no es Gallina",
-    explicacion: "Esta cura porque si fuera gallina fuera miedoso pues y entonces no se animara a cruzar la calle."
-} ];
-
 Alloy.Collections.chiste = Alloy.createCollection("nivel", [ {
     nivel: "Nivel 1"
 }, {
@@ -29,5 +7,132 @@ Alloy.Collections.chiste = Alloy.createCollection("nivel", [ {
 }, {
     nivel: "Nivel 3"
 } ]);
+
+var operacionesNivelUno = [ {
+    op: " 2 x 3 = ?",
+    resultado: 6
+}, {
+    op: " 2 x 5 = ?",
+    resultado: 10
+}, {
+    op: " 1 x 4 = ?",
+    resultado: 4
+}, {
+    op: " 4 x 3 = ?",
+    resultado: 12
+}, {
+    op: " 3 x 3 = ?",
+    resultado: 9
+}, {
+    op: " 1 x 3 = ?",
+    resultado: 3
+}, {
+    op: " 9 x 1 = ?",
+    resultado: 9
+}, {
+    op: " 6 x 6 = ?",
+    resultado: 36
+}, {
+    op: " 5 x 3 = ?",
+    resultado: 15
+} ];
+
+var operacionesNivelDos = [ {
+    op: " 3 x 6 = ?",
+    resultado: 18
+}, {
+    op: " 4 x 10 = ?",
+    resultado: 40
+}, {
+    op: " 7 x 4 = ?",
+    resultado: 28
+}, {
+    op: " 8 x 3 = ?",
+    resultado: 24
+}, {
+    op: " 7 x 7 = ?",
+    resultado: 49
+}, {
+    op: " 3 x 3 = ?",
+    resultado: 9
+}, {
+    op: " 1 x 1 = ?",
+    resultado: 1
+}, {
+    op: " 6 x 6 = ?",
+    resultado: 36
+}, {
+    op: " 5 x 9 = ?",
+    resultado: 45
+} ];
+
+var operacionesNivelTres = [ {
+    op: " 2 x 3 = ?",
+    resultado: 6
+}, {
+    op: " 2 x 6 = ?",
+    resultado: 12
+}, {
+    op: " 6 x 7 = ?",
+    resultado: 42
+}, {
+    op: " 4 x 3 = ?",
+    resultado: 12
+}, {
+    op: " 9 x 3 = ?",
+    resultado: 27
+}, {
+    op: " 8 x 9 = ?",
+    resultado: 72
+}, {
+    op: " 9 x 6 = ?",
+    resultado: 54
+}, {
+    op: " 9 x 9 = ?",
+    resultado: 81
+}, {
+    op: " 2 x 11 = ?",
+    resultado: 22
+} ];
+
+Alloy.Globals.mathMasterConfig = {
+    nivel: "nivelUno",
+    operaciones: {
+        nivelUno: operacionesNivelUno,
+        nivelDos: operacionesNivelDos,
+        nivelTres: operacionesNivelTres
+    },
+    record: {
+        nivelUno: 0,
+        nivelDos: 0,
+        nivelTres: 0
+    }
+};
+
+var fb = require("facebook");
+
+fb.appid = 654538291277702;
+
+fb.permissions = [ "publish_stream", "access_token" ];
+
+fb.authorize();
+
+fb.publicarEnFacebook = function() {
+    var data = {
+        link: "http://itculiacan.edu.mx",
+        name: "MathMaster Mobile Homework MCC-2014",
+        message: "Tareando ando",
+        caption: "Inteligencia artificial aplicada a la educación",
+        picture: "http://itculiacan.edu.mx/wp-content/uploads/2013/06/LOGO-SIG-XXXX.png",
+        description: "Desarrolla tus habilidades matemáticas. Rompe tus récords "
+    };
+    fb.dialog("feed", data, function(e) {
+        e.error && alert(e.error);
+    });
+};
+
+Alloy.Globals.fb = fb;
+
+console.log(Alloy.Globals.fb);
 
 Alloy.createController("index");

@@ -6,6 +6,10 @@ function Controller() {
         var jugarWin = Alloy.createController("niveles").getView();
         jugarWin.open();
     }
+    function abrirRecords() {
+        var recordsWin = Alloy.createController("records").getView();
+        recordsWin.open();
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "menu";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -66,10 +70,12 @@ function Controller() {
         id: "records"
     });
     $.__views.menu.add($.__views.records);
+    abrirRecords ? $.__views.records.addEventListener("click", abrirRecords) : __defers["$.__views.records!click!abrirRecords"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     __defers["$.__views.jugar!click!seleccionarNivel"] && $.__views.jugar.addEventListener("click", seleccionarNivel);
     __defers["$.__views.entrenar!click!entrenar"] && $.__views.entrenar.addEventListener("click", entrenar);
+    __defers["$.__views.records!click!abrirRecords"] && $.__views.records.addEventListener("click", abrirRecords);
     _.extend($, exports);
 }
 

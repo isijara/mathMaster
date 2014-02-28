@@ -4,20 +4,21 @@ function Controller() {
     }
     function abrirNivelUno(e) {
         console.log(e.source);
-        var nivel = Alloy.createController("jugarNivelUno").getView();
-        nivel.open({
-            transition: Ti.UI.iPhone.AnimationStyle.CURL_DOWN
-        });
+        Alloy.Globals.mathMasterConfig.nivel = "nivelUno";
+        var nivel = Alloy.createController("jugar").getView();
+        nivel.open(animation);
     }
     function abrirNivelDos(e) {
         console.log(e.source);
+        Alloy.Globals.mathMasterConfig.nivel = "nivelDos";
         var nivel = Alloy.createController("jugar").getView();
-        nivel.open();
+        nivel.open(animation);
     }
     function abrirNivelTres(e) {
         console.log(e.source);
+        Alloy.Globals.mathMasterConfig.nivel = "nivelTres";
         var nivel = Alloy.createController("jugar").getView();
-        nivel.open();
+        nivel.open(animation);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "niveles";
@@ -63,7 +64,7 @@ function Controller() {
     });
     $.__views.jugarWin.add($.__views.volver);
     cerrarOpcion ? $.__views.volver.addEventListener("click", cerrarOpcion) : __defers["$.__views.volver!click!cerrarOpcion"] = true;
-    var __alloyId2 = [];
+    var __alloyId1 = [];
     $.__views.row = Ti.UI.createTableViewRow({
         height: "30dp",
         backgroundColor: "#fff",
@@ -72,7 +73,7 @@ function Controller() {
         left: 4,
         id: "row"
     });
-    __alloyId2.push($.__views.row);
+    __alloyId1.push($.__views.row);
     $.__views.nivel1 = Ti.UI.createLabel({
         text: "Nivel 1 ★",
         id: "nivel1"
@@ -87,7 +88,7 @@ function Controller() {
         left: 4,
         id: "row"
     });
-    __alloyId2.push($.__views.row);
+    __alloyId1.push($.__views.row);
     $.__views.nivel2 = Ti.UI.createLabel({
         text: "Nivel 2 ★★",
         id: "nivel2"
@@ -102,7 +103,7 @@ function Controller() {
         left: 4,
         id: "row"
     });
-    __alloyId2.push($.__views.row);
+    __alloyId1.push($.__views.row);
     $.__views.nivel3 = Ti.UI.createLabel({
         textAlign: "left",
         text: "Nivel 3 ★★★",
@@ -112,12 +113,15 @@ function Controller() {
     abrirNivelTres ? $.__views.nivel3.addEventListener("click", abrirNivelTres) : __defers["$.__views.nivel3!click!abrirNivelTres"] = true;
     $.__views.tablaCollection = Ti.UI.createTableView({
         top: "80dp",
-        data: __alloyId2,
+        data: __alloyId1,
         id: "tablaCollection"
     });
     $.__views.jugarWin.add($.__views.tablaCollection);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var animation = {
+        transition: Ti.UI.iPhone.AnimationStyle.CURL_DOWN
+    };
     __defers["$.__views.volver!click!cerrarOpcion"] && $.__views.volver.addEventListener("click", cerrarOpcion);
     __defers["$.__views.nivel1!click!abrirNivelUno"] && $.__views.nivel1.addEventListener("click", abrirNivelUno);
     __defers["$.__views.nivel2!click!abrirNivelDos"] && $.__views.nivel2.addEventListener("click", abrirNivelDos);
